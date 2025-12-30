@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever With You 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:radial-gradient(circle at top,#7f7fd5,#1b1b3a);
+color:#fff;
+min-height:100vh;
+overflow:hidden;
+perspective:1600px;
+}
+
+/* ===== GATE ===== */
+#gate{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff758c,#845ec2);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+gap:30px;
+transform-style:preserve-3d;
+animation:gateIn 2s ease forwards;
+z-index:100;
+}
+
+#gate h1{
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+transform:translateZ(120px);
+text-shadow:0 0 40px rgba(255,255,255,.7);
+}
+
+#gate p{
+max-width:520px;
+transform:translateZ(60px);
+opacity:.9;
+}
+
+.btn-group{
+display:flex;
+gap:30px;
+transform:translateZ(100px);
+}
+
+button{
+padding:15px 45px;
+border:none;
+border-radius:40px;
+font-size:1.2rem;
+font-weight:600;
+cursor:pointer;
+transition:.4s;
+}
+
+#yesBtn{
+background:#ff2e63;
+color:#fff;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+#yesBtn:hover{
+transform:translateZ(80px) scale(1.15);
+}
+
+#noBtn{
+background:rgba(255,255,255,.25);
+color:#fff;
+}
+
+/* ===== CONTENT ===== */
+#content{
+opacity:0;
+padding:60px 20px;
+max-width:900px;
+margin:auto;
+transform-style:preserve-3d;
+transition:opacity 1.2s;
+}
+#content.show{opacity:1}
+
+#typing{
+font-size:1.7rem;
+line-height:2.6;
+text-align:center;
+margin-top:100px;
+transform:translateZ(80px);
+animation:float 6s ease-in-out infinite;
+}
+
+/* ===== GIFT ===== */
+#giftBox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:60;
+}
+
+.gift{
+width:220px;
+height:220px;
+background:linear-gradient(135deg,#ff4d6d,#ff758c);
+border-radius:25px;
+position:relative;
+cursor:pointer;
+transform-style:preserve-3d;
+transform:rotateX(18deg) rotateY(-22deg);
+box-shadow:0 50px 100px rgba(0,0,0,.7);
+transition:.8s;
+}
+.gift:hover{
+transform:rotateX(0) rotateY(0) scale(1.15);
+}
+
+.gift::before,.gift::after{
+content:'';
+position:absolute;
+background:gold;
+}
+.gift::before{
+height:32px;left:0;right:0;top:50%;transform:translateY(-50%);
+}
+.gift::after{
+width:32px;top:0;bottom:0;left:50%;transform:translateX(-50%);
+}
+
+.gift-bow{
+position:absolute;
+top:-42px;
+left:50%;
+transform:translateX(-50%) translateZ(30px);
+font-size:4.5rem;
+}
+
+/* ===== PHOTO ===== */
+.photo-popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:70;
+}
+
+.photo-popup img{
+max-width:80%;
+max-height:70%;
+border-radius:25px;
+transform:translateZ(120px);
+animation:dream 6s infinite;
+filter:brightness(1.15) saturate(1.3);
+box-shadow:0 40px 100px rgba(255,255,255,.3);
+}
+
+/* ===== VIDEO ===== */
+.video-screen{
+position:fixed;
+inset:0;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:75;
+}
+video{width:100%;height:100%;object-fit:contain}
+
+/* ===== PROPOSAL ===== */
+.proposal-scene{
+position:fixed;
+inset:0;
+background:radial-gradient(circle,#000,#111);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:80;
+}
+
+.proposal-scene h1{
+font-family:'Great Vibes';
+font-size:3.5rem;
+margin-top:30px;
+animation:pulse 2s infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes gateIn{
+from{opacity:0;transform:scale(.9)}
+to{opacity:1;transform:scale(1)}
+}
+@keyframes float{
+50%{transform:translateZ(100px) translateY(-25px)}
+}
+@keyframes dream{
+50%{transform:translateZ(140px) rotateY(6deg) scale(1.05)}
+}
+@keyframes pulse{
+50%{text-shadow:0 0 40px #ff9}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<div id="gate">
+<h1>A Love Letter Awaits 💖</h1>
+<p>There is no alternate timeline where I don’t choose you.</p>
+<div class="btn-group">
+<button id="yesBtn" onclick="enterLove()">YES 💕</button>
+<button id="noBtn">No</button>
+</div>
+</div>
+
+<div id="content">
+<div id="typing"></div>
+</div>
+
+<div id="giftBox">
+<div class="gift" onclick="openGift()">
+<div class="gift-bow">🎀</div>
+</div>
+</div>
+
+<div class="photo-popup" id="photoPopup">
+<img id="currentPhoto">
+</div>
+
+<div class="video-screen" id="videoScreen">
+<video id="memoryVideo">
+<source src="memory.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="proposal-scene" id="proposalScene">
+<h1>Will you marry me, Sona? 💍</h1>
+<button onclick="alert('Good. I was rooting for us anyway.')">YES 💕</button>
+</div>
+
+<script>
+const text=`From stolen glances
+to impossible dreams…
+
+I still choose you.
+Again. And again.
+
+— Mohit 💖`;
+
+const photos=["sona1.jpg","sona2.jpg","sona3.jpg"];
+let i=0,p=0;
+
+function enterLove(){
+gate.style.display="none";
+content.classList.add("show");
+bgMusic.play();
+type();
+}
+
+function type(){
+if(i<text.length){
+typing.innerHTML+=text[i]=="\n"?"<br>":text[i];
+i++; setTimeout(type,55);
+}else{
+setTimeout(()=>giftBox.style.display="flex",1500);
+}
+}
+
+function openGift(){
+giftBox.style.display="none";
+showPhoto();
+}
+
+function showPhoto(){
+if(p<photos.length){
+photoPopup.style.display="flex";
+currentPhoto.src=photos[p];
+photoPopup.onclick=()=>{
+p++; photoPopup.style.display="none";
+setTimeout(showPhoto,400);
+}
+}else showVideo();
+}
+
+function showVideo(){
+videoScreen.style.display="flex";
+memoryVideo.play();
+memoryVideo.onended=()=>{
+videoScreen.style.display="none";
+proposalScene.style.display="flex";
+}
+}
+
+/* 3D camera */
+document.addEventListener("mousemove",e=>{
+const x=(e.clientX/window.innerWidth-.5)*10;
+const y=(e.clientY/window.innerHeight-.5)*-10;
+document.body.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+</script>
+
+</body>
+</html>
